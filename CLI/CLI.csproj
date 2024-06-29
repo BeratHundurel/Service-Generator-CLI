@@ -11,7 +11,7 @@
     <Description>A package that created for internal uses in Webbilir. Package aim to automate the creation of services and implementation in UnitOfWork pattern.</Description>
     <PackAsTool>True</PackAsTool>
     <ToolCommandName>service</ToolCommandName>
-    <Version>1.1.1</Version>
+    <Version>1.1.2</Version>
   </PropertyGroup>
 
   <ItemGroup>

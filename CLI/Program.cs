@@ -5,6 +5,11 @@ using System.IO;
 
 public class Program
 {
+    public static readonly string servicePath  = Path.Combine(Directory.GetCurrentDirectory(), "service");
+    public static readonly string interfacePath = Path.Combine(servicePath, "Abstract");
+    public static readonly string concretePath = Path.Combine(servicePath, "Concrete", "EntityFramework");
+    public static readonly string efUnitOfWorkPath = Path.Combine(concretePath, "EfUnitOfWork.cs");
+    public static readonly string iUnitOfWorkPath = Path.Combine(interfacePath, "IUnitOfWork.cs");
     public class Options
     {
         [Value(0, MetaName = "action", Required = true, HelpText = "The action to perform, 'generate'")]
@@ -28,14 +33,14 @@ public class Program
     /// Executes the specified command with the given name.
     /// </summary>
     /// <param name="action">The action to perform. Currently supports 'generate'.</param>
-    /// <param name="name">The name of the
+    /// <param name="name">The name of the file to generate.</param>
     private static void ExecuteCommand(string action, string name)
     {
         if (action.ToLower() == "generate")
         {
             GenerateFiles(name);
             UpdateUnitOfWorkFile(name);
-            FormatProject(Path.Combine(Directory.GetCurrentDirectory(), "service"));
+            FormatProject(servicePath);
         }
         else
         {
@@ -54,12 +59,8 @@ public class Program
             string interfaceName = $"I{command}Service.cs";
             string className = $"Ef{command}Service.cs";
 
-            string baseDir = Path.Combine(Directory.GetCurrentDirectory(), "service");
-            string interfaceDir = Path.Combine(baseDir, "Abstract");
-            string serviceDir = Path.Combine(baseDir, "Concrete", "EntityFramework");
-
-            Directory.CreateDirectory(interfaceDir);
-            Directory.CreateDirectory(serviceDir);
+            Directory.CreateDirectory(interfacePath);
+            Directory.CreateDirectory(concretePath);
 
             string interfaceContent =
                 $@"using System;
@@ -98,8 +99,8 @@ public class Program
                 }}
             }}";
 
-            File.WriteAllText(Path.Combine(interfaceDir, interfaceName), interfaceContent);
-            File.WriteAllText(Path.Combine(serviceDir, className), classContent);
+            File.WriteAllText(Path.Combine(interfacePath, interfaceName), interfaceContent);
+            File.WriteAllText(Path.Combine(concretePath, className), classContent);
             Console.WriteLine($"Files '{interfaceName}' and '{className}' have been created");
         }
         catch (Exception ex)
@@ -116,8 +117,7 @@ public class Program
         /// </summary>
         try
         {
-            string efUnitOfWorkFile = Path.Combine(Directory.GetCurrentDirectory(), "service", "Concrete", "EntityFramework", "EfUnitOfWork.cs");
-            string existingContent = File.ReadAllText(efUnitOfWorkFile);
+            string existingContent = File.ReadAllText(efUnitOfWorkPath);
             string serviceField = $"private I{command}Service _{command.ToLower()}Service;";
             string serviceGetter =
             $@"public I{command}Service {command}
@@ -156,7 +156,7 @@ public class Program
             }
 
             updatedContent = updatedContent.Insert((constructorEndIndex), $"\n\n\t{serviceGetter}\n");
-            File.WriteAllText(efUnitOfWorkFile, updatedContent);
+            File.WriteAllText(efUnitOfWorkPath, updatedContent);
             Console.WriteLine($"Updated EfUnitOfWork.cs to include service '{command}'.");
         }
         catch (Exception ex)
@@ -169,8 +169,7 @@ public class Program
         /// </summary>
         try
         {
-            string iUnitOfWorkFile = Path.Combine(Directory.GetCurrentDirectory(), "service", "Abstract", "IUnitOfWork.cs");
-            string existingContent = File.ReadAllText(iUnitOfWorkFile);
+            string existingContent = File.ReadAllText(iUnitOfWorkPath);
             string serviceField = $"I{command}Service {command} {{ get; }}";
 
             if (existingContent.Contains(serviceField))
@@ -187,7 +186,7 @@ public class Program
             }
 
             string updatedContent = existingContent.Insert(index, $"\n\t\t{serviceField}\n");
-            File.WriteAllText(iUnitOfWorkFile, updatedContent);
+            File.WriteAllText(iUnitOfWorkPath, updatedContent);
             Console.WriteLine($"Updated IUnitOfWork.cs to include service '{command}'.");
         }
         catch (Exception ex)
@@ -199,7 +198,7 @@ public class Program
     /// <summary>
     /// Formats the project using the 'dotnet format' command.
     /// </summary>
-    /// <param name="projectPath">The path
+    /// <param name="projectPath">The path of the project to format.</param>
     private static void FormatProject(string projectPath)
     {
         ProcessStartInfo startInfo = new ProcessStartInfo
