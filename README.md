@@ -17,7 +17,7 @@ To install ServiceGeneratorWebbilir, follow these steps:
 
 #### Usage
 
-Once installed, you can use ServiceGeneratorWebbilir to generate files and code by executing commands like `generate Blog` (example).
+Once installed, you can use ServiceGeneratorWebbilir to generate files and code by executing commands like `service generate Blog` (example).
 
 #### Documentation
 
