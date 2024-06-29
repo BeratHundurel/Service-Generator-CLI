@@ -1,6 +1,6 @@
 ### ServiceGeneratorWebbilir
 
-ServiceGeneratorWebbilir is a command-line interface (CLI) tool designed for internal use in [Webbilir] (https://webbilir.com/). Package aim to automate the creation of services and implementations in the Unit of Work pattern.
+ServiceGeneratorWebbilir is a command-line interface (CLI) tool designed for internal use in [Webbilir](https://webbilir.com/). Package aim to automate the creation of services and implementations in the Unit of Work pattern.
 
 #### Installation
 
