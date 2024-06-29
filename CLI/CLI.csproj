@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>ServiceGeneratorWebbilir</PackageId>
+    <Title>Service Generator For Webbilir</Title>
+    <Authors>Berat Hündürel</Authors>
+    <Company>Webbilir</Company>
+    <Description>A package that created for internal uses in Webbilir. Package aim to automate the creation of services and implementation in UnitOfWork pattern.</Description>
+    <PackAsTool>True</PackAsTool>
+    <ToolCommandName>service</ToolCommandName>
+    <Version>1.1.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+  </ItemGroup>
+
+</Project>
