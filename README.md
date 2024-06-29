@@ -14,15 +14,7 @@ To install ServiceGeneratorWebbilir, follow these steps:
    ```
 
    This command installs the tool globally on your system.
-
-#### Usage
-
-Once installed, you can use ServiceGeneratorWebbilir to generate files and code by executing commands like `service generate Blog` (example).
-
-#### Documentation
-
-For more information and detailed usage instructions, visit the [ServiceGeneratorWebbilir NuGet package page](https://www.nuget.org/packages/ServiceGeneratorWebbilir).
-
+   
 #### What Service Generator CLI Does
 
 1. Service and Interface Generation: Automatically generates service interface (I{ServiceName}Service.cs) and implementation (Ef{ServiceName}Service.cs) files.
@@ -32,4 +24,10 @@ For more information and detailed usage instructions, visit the [ServiceGenerato
 
 Overall, this tool aims to streamline the development process by automating the creation of boilerplate service and implementation files.
 
+#### Usage
 
+Once installed, you can use ServiceGeneratorWebbilir to generate files and code by executing commands like `service generate Blog` (example).
+
+#### Documentation
+
+For more information and detailed usage instructions, visit the [ServiceGeneratorWebbilir NuGet package page](https://www.nuget.org/packages/ServiceGeneratorWebbilir).
