@@ -23,7 +23,7 @@ Once installed, you can use ServiceGeneratorWebbilir to generate files and code 
 
 For more information and detailed usage instructions, visit the [ServiceGeneratorWebbilir NuGet package page](https://www.nuget.org/packages/ServiceGeneratorWebbilir).
 
-### What Service Generator CLI Does
+#### What Service Generator CLI Does
 
 1. Service and Interface Generation: Automatically generates service interface (I{ServiceName}Service.cs) and implementation (Ef{ServiceName}Service.cs) files.
 2. Integration with Entity Framework: Supports integration with Entity Framework for database operations within service implementations.
