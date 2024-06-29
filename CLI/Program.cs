@@ -128,15 +128,9 @@ public class Program
                 }}
             }}";
 
-            if (existingContent.Contains(serviceField))
+            if (existingContent.Contains(serviceField) || existingContent.Contains(serviceGetter))
             {
-                Console.WriteLine($"Service '{command}' dependency already exists in EfUnitOfWork.cs.");
-                return;
-            }
-
-            if (existingContent.Contains(serviceGetter))
-            {
-                Console.WriteLine($"Service '{command}' getter already exists in EfUnitOfWork.cs.");
+                Console.WriteLine($"Service '{command}' dependency already exists in UnitOFWork");
                 return;
             }
 
